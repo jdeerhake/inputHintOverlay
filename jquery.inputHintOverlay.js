@@ -1,9 +1,10 @@
 /*
- * jQuery Input Hint Overlay plugin v1.1.9, 2010-04-14
+ * jQuery Input Hint Overlay plugin v1.1.10, 2010-09-21
  * Only tested with jQuery 1.4.1 (early versions - YMMV)
  * 
  *   http://jdeerhake.com/inputHintOverlay.php
  *   http://plugins.jquery.com/project/inputHintOverlay
+ *   http://github.com/jdeerhake/inputHintOverlay
  *
  *
  * Copyright (c) 2010 John Deerhake

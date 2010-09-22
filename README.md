@@ -1,6 +1,6 @@
 inputHintOverlay
 ================
-v1.1.9
+v1.1.9  
 9/21/2010
 
 About
