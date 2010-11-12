@@ -26,6 +26,7 @@ jQuery.fn.inputHintOverlay = function (topNudge, leftNudge) {
 			var curValue = jQuery(this).attr('value');
 			var inp = jQuery(this);
 			var safeHint;
+			var newDiv;
 			if(relHint) {
 				safeHint = relHint.replace(/[^a-zA-Z0-9]/g, '');
 				jQuery(this).wrap("<div style='position:relative' id='wrap" + safeHint + suffix + "' />");
@@ -41,7 +42,7 @@ jQuery.fn.inputHintOverlay = function (topNudge, leftNudge) {
 					'top': newPos['top'] + topNudge,
 					'cursor' : 'text'
 				};
-				var newDiv = jQuery(document.createElement('label'))
+				newDiv = jQuery(document.createElement('label'))
 					.appendTo(wrap)
 					.attr('for', jQuery(this).attr('id'))
 					.attr('id', safeHint + suffix)
@@ -53,15 +54,17 @@ jQuery.fn.inputHintOverlay = function (topNudge, leftNudge) {
 						inp.trigger("focus");
 					});
 			}
-			if(curValue) {
-				newDiv.toggle(false);
+			if(newDiv){
+				if(curValue) {
+					newDiv.toggle(false);
+				}
+				jQuery(this).focus(function() {
+					newDiv.toggle(false);
+				});
+				jQuery(this).blur(function() {
+					if (jQuery(this).attr('value') == "") { newDiv.toggle(true); }
+				});
 			}
-			jQuery(this).focus(function() {
-				newDiv.toggle(false);
-			});
-			jQuery(this).blur(function() {
-				if (jQuery(this).attr('value') == "") { newDiv.toggle(true); }
-			});
 		});
 	});
 }
