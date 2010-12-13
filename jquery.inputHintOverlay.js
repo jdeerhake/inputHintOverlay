@@ -29,7 +29,7 @@ jQuery.fn.inputHintOverlay = function (topNudge, leftNudge) {
 			var newDiv;
 			if(relHint) {
 				safeHint = relHint.replace(/[^a-zA-Z0-9]/g, '');
-				jQuery(this).wrap("<div style='position:relative' id='wrap" + safeHint + suffix + "' />");
+				jQuery(this).wrap("<div class='inputHintOverlay' style='position:relative' id='wrap" + safeHint + suffix + "' />");
 				var wrap = jQuery(this).parent();
 				var newPos = jQuery(this).position();
 				newZ = jQuery(this).css('z-index');
