@@ -13,9 +13,10 @@
  *   http://www.opensource.org/licenses/mit-license.php
  *   http://www.gnu.org/licenses/gpl.html
  */
-jQuery.fn.inputHintOverlay = function (topNudge, leftNudge) {
+jQuery.fn.inputHintOverlay = function (topNudge, leftNudge, useChangeEvent) {
 	topNudge = typeof(topNudge) != 'undefined' ? topNudge : 0;
 	leftNudge = typeof(leftNudge) != 'undefined' ? leftNudge : 0;
+	useChangeEvent = typeof(useChangeEvent) != 'undefined' ? useChangeEvent : false;
 	var suffix = 'jqiho';
 	return this.each(function (){
 		var curParent = jQuery(this);
@@ -61,9 +62,16 @@ jQuery.fn.inputHintOverlay = function (topNudge, leftNudge) {
 				jQuery(this).focus(function() {
 					newDiv.toggle(false);
 				});
-				jQuery(this).blur(function() {
-					if (jQuery(this).attr('value') == "") { newDiv.toggle(true); }
-				});
+				if(useChangeEvent){
+					jQuery(this).change(function() {
+						var element = jQuery(this);
+						newDiv.toggle(jQuery(this).attr('value') == "");
+					});
+				}else{
+					jQuery(this).blur(function() {
+						if (jQuery(this).attr('value') == "") { newDiv.toggle(true); }
+					});
+				}
 			}
 		});
 	});
